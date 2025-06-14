@@ -3,6 +3,7 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+
 contract FilmBet is Ownable {
     IERC20 public token;
     uint256 public feeBasisPoints = 200;
@@ -36,7 +37,12 @@ contract FilmBet is Ownable {
     uint256 public betPoolCount;
     mapping(uint256 => BetPool) public betPools;
 
-    event BetPoolCreated(uint256 indexed poolId, string question);
+    event BetPoolCreated(
+        uint256 indexed poolId,
+        string question,
+        uint256 movieId,
+        uint256 endTime
+    );
     event BetPlaced(
         uint256 indexed poolId,
         address indexed user,
@@ -70,7 +76,7 @@ contract FilmBet is Ownable {
         pool.movieId = _movieId;
         pool.endTime = _endTime;
 
-        emit BetPoolCreated(betPoolCount, _question);
+        emit BetPoolCreated(betPoolCount, _question, _movieId, _endTime);
         return betPoolCount;
     }
 
@@ -184,5 +190,9 @@ contract FilmBet is Ownable {
             pool.outcome,
             pool.resolved
         );
+    }
+
+    function getTokenAddress() external view returns (address) {
+        return address(token);
     }
 }
