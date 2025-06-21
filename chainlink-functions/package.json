@@ -1,0 +1,52 @@
+{
+  "name": "chainlink-functions-box-office-consumer",
+  "version": "1.0.0",
+  "description": "A smart contract that uses Chainlink Functions to call box office API endpoints",
+  "main": "request.js",
+  "scripts": {
+    "deploy": "hardhat run deploy.js",
+    "request": "node request.js",
+    "request:daily": "node run-daily.js",
+    "request:weekly": "node -e \"require('./request.js').requestWeeklyData(process.argv[1] || '')\"",
+    "request:monthly": "node -e \"require('./request.js').requestMonthlyData(process.argv[1] || '')\"",
+    "request:seasonal": "node -e \"require('./request.js').requestSeasonalData(process.argv[1] || '')\"",
+    "request:quarterly": "node -e \"require('./request.js').requestQuarterlyData(process.argv[1] || '')\"",
+    "request:yearly": "node -e \"require('./request.js').requestYearlyData(process.argv[1] || '')\"",
+    "request:health": "node -e \"require('./request.js').requestHealthCheck()\"",
+    "test-api": "node simple-api-test.js",
+    "test-all": "node test-all-endpoints.js",
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "node": "hardhat node"
+  },
+  "keywords": [
+    "chainlink",
+    "functions",
+    "blockchain",
+    "smart-contracts",
+    "api",
+    "oracle",
+    "ethereum",
+    "box-office",
+    "movies"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@chainlink/contracts": "^0.8.0",
+    "@chainlink/functions-toolkit": "^0.3.2",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.19.0",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "chai": "^4.3.10",
+    "ethereum-waffle": "^4.0.10",
+    "solidity-coverage": "^0.8.4"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+} 
